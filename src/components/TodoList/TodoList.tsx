@@ -4,6 +4,8 @@ import Button from "../ui/Button/Button";
 type TodoListPropsType = {
     title: string,
     tasks: Array<TaskType>
+    removeTask: (id: number) => void
+
 }
 
 export type TaskType = {
@@ -13,7 +15,7 @@ export type TaskType = {
 }
 
 export function TodoList(props: TodoListPropsType) {
-    const {title, tasks} = props
+    const {title, tasks, removeTask} = props
 
     return (
         <div className='todoList'>
@@ -31,6 +33,7 @@ export function TodoList(props: TodoListPropsType) {
                         <li key={task.id}>
                             <input type="checkbox" defaultChecked={task.isCompleted}/>
                             <span>{task.title}</span>
+                            <button onClick={() => removeTask(task.id)}>X</button>
                         </li>
                     ))
                 }
